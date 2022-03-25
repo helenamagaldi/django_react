@@ -33,7 +33,7 @@ def escolha_usuario(opcao):
 
         print("""
         Muito obrigada por fazer o seu cadastro de cliente. Seja bem vinda à ACME!
-        Você está sendo redirecionada ao nosso painel de opções.
+        Você está sendo redirecionada para o nosso painel de opções.
         """)
 
         return lista_clientes, tela_inicial()
@@ -46,6 +46,7 @@ def escolha_usuario(opcao):
             carros.detalhes()
 
         voltar = input("Gostaria de voltar para a nossa tela principal? Digite 'S' para sim e 'N' para não")
+        
         if voltar == "S":
             tela_inicial()
         elif voltar == "N":
@@ -65,43 +66,25 @@ def escolha_usuario(opcao):
         for cliente in lista_clientes:
             lista_usuarios.insert(0, cliente.usuario)
 
-        print(lista_usuarios)
-
         print("Olá, seja bem vinda à área de reservas da locadora de carros ACME")
-        reserva = Reserva.fazer_reserva()
+
+        reserva = Reserva.requisitar_reserva()
         lista_reservas.append(reserva)
-
-        # if Reserva.usuario in lista_clientes.usuario:
-        #   print ("hi")
-
-        # if [item for item in lista_clientes["usuário"] == lista_reservas["usuário"]]:
-        #   print("ok")
-
         user = getattr(reserva, "usuario")
-        print(user) 
-        print(f"lista clientes: {lista_clientes}")
 
-        procura_cliente = filter(lambda x: x.usuario == user, lista_clientes)
+        for usuario_existente in lista_clientes:
+            if usuario_existente.usuario == user:
+                carro_escolhido = int(input("Por favor, digite o código do carro escolhido"))
+                for carro_existente in VeiculoLocacao.lista_carros:
+                    if carro_existente.codigo_do_carro == carro_escolhido:
+                        carro_escolhido = carro_existente
+                        Reserva.montar_reserva(reserva.codigo_da_reserva,usuario_existente.usuario,carro_escolhido) 
+                        print(VeiculoLocacao.lista_carros)
+                        VeiculoLocacao.lista_carros.remove(carro_existente)
+                        print(VeiculoLocacao.lista_carros)
 
-        print(f"procura: {procura_cliente}")
-
-        if procura_cliente is not None:
-            print("ok")
-
-        # if getattr(reserva, "usuario") in lista_clientes:
-        #     print("ok")
-        # else:
-        #     print("Não há um cadastro para esse usuário. Você gostaria de cadastrá-lo?")
-
-
-    # elif opcao == 3:
-
-
-    # elif choice == 4:
-    #     break
+            else:
+                print("notok")
 
     else:
         print("Please enter a choice between 1-4 only!")
-
-    # for object in lista_clientes:
-    #   print(vars(object))
