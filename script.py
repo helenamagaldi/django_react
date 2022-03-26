@@ -26,9 +26,9 @@ def opcao_voltar():
 
     voltar = input("Gostaria de voltar para a nossa tela principal? Digite 'S' para sim e 'N' para não: ")
 
-    if voltar == "S":
+    if voltar == "S" or "s":
         tela_inicial()
-    elif voltar == "N":
+    elif voltar == "N" or "n":
         print("""
         A ACME RentACar deseja uma vida longa e próspera
         """)
@@ -79,23 +79,16 @@ def escolha_usuario(opcao):
             reserva = Reserva.requisitar_reserva()
             Reserva.lista_reservas.append(reserva)
             user = getattr(reserva, "usuario")
-            print(user)
 
-            print(Cliente.lista_clientes)
-            print(lista_usuarios)
-
-            # usuario_existente = filter(lambda x: x.usuario == user, Cliente.lista_clientes)
             usuario_existente = next(cliente for cliente in Cliente.lista_clientes if cliente.usuario == user)
 
-
-            print(f"procura: {usuario_existente}")
-
             if usuario_existente.usuario == user:
-                carro_escolhido = int(input("Por favor, digite o código do carro escolhido"))
+                carro_escolhido = int(input("Por favor, digite o código do carro escolhido: "))
                 carro_existente = next(carro for carro in VeiculoLocacao.lista_carros if carro.codigo_do_carro == carro_escolhido)
 
                 if carro_existente is not None:
-                    Reserva.montar_reserva(reserva.codigo_da_reserva,usuario_existente.usuario,carro_existente) 
+                    nova_reserva = Reserva.montar_reserva(reserva.codigo_da_reserva,usuario_existente.usuario,carro_existente)
+                    Reserva.lista_reservas.append(nova_reserva)
                     VeiculoLocacao.lista_carros.remove(carro_existente)
 
                     opcao_voltar()
@@ -105,7 +98,17 @@ def escolha_usuario(opcao):
                 print("Dados do usuário escolhido não conferem. Por favor, tente novamente")
 
     elif opcao == 4:
-        Reserva.detalhes_reserva()
+        codigo_reserva_usr = int(input("Por favor, digite o código da sua reserva: "))
+        reserva_existente = next(reserva for reserva in Reserva.lista_reservas if reserva.codigo_da_reserva == codigo_reserva_usr)
+
+        if reserva_existente is not None:
+            Reserva.detalhes_reserva(reserva_existente)
+        else:
+            print("""
+            Não possuimos uma reserva com esse código. Você será redirecionado para a nossa tela inicial.
+            """)    
+
+        tela_inicial()
 
     elif opcao == 5:
         print("-------------------------------------\n")
@@ -125,4 +128,4 @@ def escolha_usuario(opcao):
 
 
     else:
-        print("Por favor, escolha uma opção entre 1 a 3")
+        print("Por favor, escolha uma opção entre 1 a 6: ")
