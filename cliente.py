@@ -1,10 +1,14 @@
-class Pessoa(object):
-  
+class Cliente(object):
+    lista_clientes = []
+
     def __init__(self, nome, cpf, rg, usuario):
       self.usuario = usuario
       self.nome = nome
       self.cpf = cpf
       self.rg = rg
+
+      self.lista_clientes.append(self)
+
 
     @classmethod
     def cadastro_cliente(self):

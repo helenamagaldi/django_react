@@ -1,32 +1,24 @@
 import datetime
 
 from carro import VeiculoLocacao
-from helpers import escolha_usuario, tela_inicial
-from pessoa import Pessoa
+from script import tela_inicial
+from cliente import Cliente
 from reserva import Reserva
  
  
 def main():
-    carro1 = VeiculoLocacao("Palio", "Fiat", "popular", "manual", "gasolina", "2003", "AAA-1111", 111)
-    carro2 = VeiculoLocacao("Marea", "Fiat", "wagon", "automatico", "gasolina", "2005", "BBB-2222", 222)
-    carro3 = VeiculoLocacao("Gol", "Volkswagen", "popular", "automatico", "flex", "2012", "CCC-3333", 333)
-
     time = datetime.datetime.now()
 
+    carro1 = VeiculoLocacao("Creta", "Hyundai", "SUV", "Manual", "Gasolina", "2003", "AAA-1111", 111)
+    carro2 = VeiculoLocacao("Marea", "Fiat", "Wagon", "Automatico", "gasolina", "2005", "BBB-2222", 222)
+    carro3 = VeiculoLocacao("Gol", "Volkswagen", "Popular", "Automatico", "flex", "2012", "CCC-3333", 333)
+
+    cliente1 = Cliente("cookie", "Cookie Monster", "1234", "1234")
+    cliente2 = Cliente("aladin", "Aladin The King", "0987", "0987")
+    cliente3 = Cliente("cesar", "Cesar Labs", "2424", "2424")
+
+
     tela_inicial()
-
-    # print("Bem vindo à locadora de carros ACME!\n")
-    # print("-------------------------------------\n")
-
-    # print("""
-    # 1. Cadastro de Cliente
-    # 2. Lista de carros disponíveis
-    # 3. Fazer Reserva
-    # """)
-
-    # opcao = int(input("Por favor, digite a opção desejada dentre as disponibilizadas acima: "))
-
-    # escolha_usuario(opcao)
 
 if __name__ == "__main__":
     main()
