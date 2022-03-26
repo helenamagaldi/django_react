@@ -12,10 +12,10 @@ class Cliente(object):
 
     @classmethod
     def cadastro_cliente(self):
-      usuario = input("Por favor, digite um nome de usuário")
-      nome = input("Por favor, digite o seu nome")
-      cpf = input("Por favor, digite o seu CPF")
-      rg = input("Por favor, digite o seu RG")
+      usuario = input("Por favor, digite um nome de usuário: ")
+      nome = input("Por favor, digite o seu nome: ")
+      cpf = input("Por favor, digite o seu CPF: ")
+      rg = input("Por favor, digite o seu RG: ")
 
       return self(usuario, nome, cpf, rg)
 
