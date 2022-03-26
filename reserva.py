@@ -10,6 +10,9 @@ class Reserva:
       self.codigo_da_reserva = codigo_da_reserva
       self.usuario = usuario 
 
+      self.lista_reservas.append(self)
+
+
     @classmethod
     def requisitar_reserva(self):
       codigo_da_reserva = random.randint(0,10)
@@ -21,9 +24,13 @@ class Reserva:
     def montar_reserva(self, codigo_da_reserva, usuario_existente, carro_escolhido):
         print("""
         Reserva realizada com sucesso!
+        Por favor, anote o código da sua reserva :)
         """)
         print(f"Código da reserva: {codigo_da_reserva}, Usuário: {usuario_existente}, Carro Escolhido: {carro_escolhido.modelo}, {carro_escolhido.marca}, {carro_escolhido.placa}")
 
     @classmethod
     def detalhes_reserva(self):
         print("dtalhes reserva")
+        codigo_reserva = int(input("Por favor, digite o código da sua reserva"))
+
+        print(codigo_reserva)

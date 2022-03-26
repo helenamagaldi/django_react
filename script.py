@@ -14,6 +14,8 @@ def tela_inicial():
     1. Cadastro de Cliente
     2. Lista de carros disponíveis
     3. Fazer Reserva
+    4. Detalhes de Reserva
+    5. Cadastro de Veículo de Locação
     """)
 
     opcao = int(input("Por favor, digite a opção desejada dentre as disponibilizadas acima: "))
@@ -22,7 +24,7 @@ def tela_inicial():
 
 def opcao_voltar():
 
-    voltar = input("Gostaria de voltar para a nossa tela principal? Digite 'S' para sim e 'N' para não")
+    voltar = input("Gostaria de voltar para a nossa tela principal? Digite 'S' para sim e 'N' para não: ")
 
     if voltar == "S":
         tela_inicial()
@@ -101,6 +103,26 @@ def escolha_usuario(opcao):
 
             else:
                 print("Dados do usuário escolhido não conferem. Por favor, tente novamente")
+
+    elif opcao == 4:
+        Reserva.detalhes_reserva()
+
+    elif opcao == 5:
+        print("-------------------------------------\n")
+        print("-------Cadastro de Veículo de Locação-----------\n")    
+        print("Olá, seja bem vinda à área de cadastro de cliente da ACME RentACar")
+    
+        veiculo = VeiculoLocacao.cadastro_carro()
+        veiculo.detalhes()
+        VeiculoLocacao.lista_carros.append(veiculo)
+
+        print("""
+        Veículo adicionado à nossa lista de locação.
+        Você está sendo redirecionada para o nosso painel de opções.
+        """)
+
+        return VeiculoLocacao.lista_carros, tela_inicial()
+
 
     else:
         print("Por favor, escolha uma opção entre 1 a 3")
