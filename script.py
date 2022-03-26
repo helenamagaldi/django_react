@@ -28,7 +28,7 @@ def opcao_voltar():
         tela_inicial()
     elif voltar == "N":
         print("""
-        A ACME locadora de veículos deseja uma vida longa e próspera
+        A ACME RentACar deseja uma vida longa e próspera
         """)
     else:
         print("""
@@ -39,14 +39,14 @@ def escolha_usuario(opcao):
     if opcao == 1:
         print("-------------------------------------\n")
         print("-------Cadastro de Cliente-----------\n")    
-        print("Olá, seja bem vinda à área de cadastro de cliente da locadora de carros ACME")
+        print("Olá, seja bem vinda à área de cadastro de cliente da ACME RentACar")
     
         cliente = Cliente.cadastro_cliente()
         cliente.detalhes()
         Cliente.lista_clientes.append(cliente)
 
         print("""
-        Muito obrigada por fazer o seu cadastro de cliente. Seja bem vinda à ACME!
+        Muito obrigada por fazer o seu cadastro de cliente. Seja bem vinda à ACM RentACar!
         Você está sendo redirecionada para o nosso painel de opções.
         """)
 
