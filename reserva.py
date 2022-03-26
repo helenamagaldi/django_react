@@ -1,9 +1,10 @@
 import random
 
 from carro import VeiculoLocacao
-from pessoa import Pessoa
+from cliente import Cliente
 
 class Reserva:
+    lista_reservas = []
   
     def __init__(self, codigo_da_reserva, usuario):
       self.codigo_da_reserva = codigo_da_reserva
